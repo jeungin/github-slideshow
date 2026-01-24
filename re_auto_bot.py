@@ -11,6 +11,13 @@ This bot demonstrates best practices for:
 - Trading loop with buy/sell logic
 
 All critical, major, moderate, and minor issues have been pre-fixed.
+
+IMPORTANT: This is a TEMPLATE implementation showing the fixed patterns.
+Some API calls are placeholders marked with TODO comments. In production:
+- Replace placeholder API calls with actual KIS API implementations
+- Implement buy candidate selection logic for your specific strategy
+- Add proper error handling for actual API responses
+- Test thoroughly with paper trading before using real money
 """
 
 import asyncio
@@ -235,21 +242,28 @@ class KISApi:
         try:
             log_trade(f"📤 Order: {type_str} {code} x{qty} (credit={use_credit})", level="INFO")
             
+            # NOTE: This is a template implementation showing the fallback pattern.
+            # Replace 'success = True' with actual KIS API calls in production.
+            # Example: success = self._call_kis_api(code, qty, type_str, use_credit)
+            
             # Attempt order
             if use_credit:
                 # Try credit order first
-                success = True  # Simulated success
+                # TODO: Replace with actual API call
+                success = True  # Placeholder - demonstrates fallback logic
                 
                 if not success and auto_fallback:
                     log_trade(f"💵 [자동 폴백] 신용 실패 → 전액 현금으로 재시도", level="WARNING")
                     # Retry with cash
-                    success = True  # Simulated fallback success
+                    # TODO: Replace with actual API call
+                    success = True  # Placeholder - demonstrates fallback logic
                     return (success, "Credit failed, fallback to cash succeeded")
                 
                 return (success, "Credit order succeeded" if success else "Credit order failed")
             else:
                 # Cash order
-                success = True  # Simulated success
+                # TODO: Replace with actual API call
+                success = True  # Placeholder - demonstrates cash order logic
                 return (success, "Cash order succeeded" if success else "Cash order failed")
                 
         except Exception as e:
@@ -458,7 +472,8 @@ async def analyze_and_buy(code: str, name: str) -> bool:
             try:
                 if obj is not None:
                     del obj
-            except:
+            except Exception:
+                # Silently ignore cleanup errors
                 pass
         
         # Periodic garbage collection (every 10 loops)
@@ -621,11 +636,15 @@ async def trading_loop():
             log_trade(f"⏸️ 현금 부족 (필요: {ONE_TIME_BUY_AMT:,}원)", level="INFO")
             # Issue #1 CRITICAL FIX: Removed 'continue' here too!
         else:
-            # Find and analyze potential buys
-            # candidates = find_buy_candidates()
+            # TODO: Implement buy candidate selection logic
+            # This is a template showing the fix patterns - actual trading logic
+            # should be implemented based on specific strategy requirements.
+            # 
+            # Example implementation:
+            # candidates = find_buy_candidates()  # Returns list of {code, name}
             # for candidate in candidates[:3]:
             #     await analyze_and_buy(candidate['code'], candidate['name'])
-            #     await asyncio.sleep(2)
+            #     await asyncio.sleep(2)  # Rate limiting
             pass
         
         # Issue #1 Fix: No 'continue' statement!
