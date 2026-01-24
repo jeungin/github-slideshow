@@ -2,3 +2,30 @@ _site/
 .sass-cache/
 .jekyll-metadata
 .bundle
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+*.egg-info/
+dist/
+build/
+
+# Environment variables
+.env
+
+# Logs
+*.log
+trading.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
