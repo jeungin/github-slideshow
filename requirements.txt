@@ -1,0 +1,15 @@
+# Python requirements for re_auto_bot.py
+# Install with: pip install -r requirements.txt
+
+# Discord bot
+discord.py>=2.3.0
+
+# HTTP requests
+requests>=2.31.0
+
+# Technical analysis (if needed)
+pandas>=2.0.0
+ta>=0.11.0
+
+# Environment variables (optional)
+python-dotenv>=1.0.0
